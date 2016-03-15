@@ -1,0 +1,239 @@
+/*reset*/
+html {
+  font-size: 20px;
+}
+body {
+  margin: 0;
+
+  font-size: 16px;
+  font-family: "MicrosoftJhengHei","Microsoft YaHei";
+}
+p,
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+input {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+/*main*/
+body {
+  background-color: #eeeeed;
+}
+.container {
+  max-width: 1280px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*header*/
+header {
+  height: 57px;
+  border-bottom: 1px solid #629cca;
+
+  background-color: #2189bf;
+}
+header img {
+  margin-left: 51px;
+  margin-top: 10px;
+}
+.header-input {
+  position: relative;
+  float: right;
+  margin-top: 14px;
+  width: 285px;
+}
+header input {
+  position: absolute;
+  z-index: 2;
+  width: 260px;
+  height: 28px;
+  border: 0;
+  padding-left: 24px;
+
+  outline: none;
+  background: url('../img/search.png') #fff no-repeat;
+  background-position: center left;
+}
+.header-input:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  left: -14px;
+
+  border: 14px solid #fff;
+  border-radius: 50%;
+
+}
+.header-input:before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  right: -14px;
+
+  border: 14px solid #fff;
+  border-radius: 50%;
+
+}
+header button {
+  float: right;
+  margin-left: 39px;
+  margin-right: 7.34375%;
+  margin-top: 20px;
+  padding-left: 18px;
+  border: 0;
+
+  color: #fff;
+  background: url('../img/login.png') no-repeat;
+  background-position: center left;
+  outline: none;
+  cursor: pointer;
+  font-family: "MicrosoftJhengHei","Microsoft YaHei";
+  font-size: .6rem;
+}
+
+/*main-left*/
+.main-left {
+  float: left;
+  width: 260px;
+  height: 100%;
+  border-right: 1px solid #4d4753;
+
+  background-color: #2a2e3d;
+  color: #6e8095;
+  font-size: .6rem;
+  font-weight: 600;
+}
+.main-l-now,
+.main-l-detail div:hover,
+.main-l-body li > span:hover {
+  color: #ededef;
+  cursor: pointer;
+}
+.main-l-li-now,
+.main-l-body li:hover {
+  background-color: #383d4e !important;
+  cursor: pointer;
+}
+.main-l-body li:hover > span {
+  color: #ededef;
+}
+.main-l-header {
+  position: relative;
+  float: left;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+
+  background-color: #b2aaad;
+}
+.main-l-header:after {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+
+  width: 54px;
+  height: 54px;
+  border: 1px solid #b2aaad;
+  border-radius: 50%;
+}
+.main-l-header img {
+  width: 100%;
+}
+.main-l-top {
+  margin-top: 23px;
+  margin-left: 51px;
+}
+.main-l-top > span {
+  display: inline-block;
+  padding-left: 23px;
+  padding-top: 14px;
+
+  font-size: .8rem;
+  font-weight: normal;
+}
+.main-l-detail {
+  margin-top: 40px;
+  margin-left: -19px;
+}
+.main-l-detail > div {
+  display: inline-block;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.main-l-d-border {
+  border-left: 2px solid #313645;
+}
+.main-l-body {
+  margin-top: 19px;
+}
+.main-l-body > ul > li {
+  padding-left: 70px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+  background-position: 45px center;
+}
+.main-l-li-now {
+  background-position: 45px 15px !important;
+}
+.main-l-li-now > ul > li {
+  padding-left: 40px;
+}
+.main-l-li-now ul > li {
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+.ico-bfile li {
+  padding-left: 20px;
+}
+
+/*ico*/
+.ico-chart {
+  background: url('../img/ico-bchart.png') no-repeat;
+}
+.ico-doc {
+  background: url('../img/ico-doc.png') no-repeat;
+}
+.ico-doc:hover {
+  background: url('../img/ico-bdoc.png') no-repeat;
+}
+.ico-bdoc {
+  background: url('../img/ico-bdoc.png') no-repeat;
+}
+.ico-file {
+  background: url('../img/ico-file.png') no-repeat;
+}
+.ico-file:hover {
+  background: url('../img/ico-bfile.png') no-repeat;
+  margin-left: -3px;
+  padding-left: 43px !important;
+}
+.ico-bfile {
+  margin-left: -3px;
+  padding-left: 43px !important;
+  background: url('../img/ico-bfile.png') no-repeat;
+}
+.ico-count {
+  background: url('../img/ico-count.png') no-repeat;
+}
+.ico-share {
+  background: url('../img/ico-share.png') no-repeat;
+}
+.ico-star {
+  background: url('../img/ico-star.png') no-repeat;
+}
+
+
+/*main-right*/
+.main-right {
+  margin-left: 260px;
+}
