@@ -4,4 +4,4 @@
 
   **stage1 task:**
   >*   ~~task8~~
-  >*   task9
+  >*   ~~task9~~
