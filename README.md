@@ -5,3 +5,6 @@
   **stage1 task:**
   >*   ~~task8~~
   >*   ~~task9~~
+
+  **stage2 task:**
+  >*   听指令的小方块
