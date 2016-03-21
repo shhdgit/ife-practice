@@ -1,18 +1,18 @@
 $(function () {
   var myblock = new singleCmdBlock($('myblock'), 50),
-  ele = myblock.ele,
-  param = myblock.param,
-  command = {
-    move: function () {
-      myblock.move()
-    },
-    turn: function (deg) {
-      myblock.turn(deg)
-    },
-    turnTo: function (orien) {
-      myblock.turnTo(orien)
-    },
-  }
+      ele = myblock.ele,
+      param = myblock.param,
+      command = {
+        move: function () {
+          myblock.move()
+        },
+        turn: function (deg) {
+          myblock.turn(deg)
+        },
+        turnTo: function (orien) {
+          myblock.turnTo(orien)
+        },
+      }
 
   // 渲染方块
   var render = function () {
