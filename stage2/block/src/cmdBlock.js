@@ -4,6 +4,10 @@ var CmdBlock = function (ele, speed) {
   this.param = {
     x: 0,
     y: 0,
+    record: {
+      x: 0,
+      y: 0,
+    }, //x, y记录
     deg: 0,
     speed: speed,
   }
@@ -19,6 +23,8 @@ CmdBlock.prototype.init = function () {
 
   this.param.x = x
   this.param.y = y
+  this.param.record.x = x
+  this.param.record.y = y
 }
 
 CmdBlock.prototype.turn = function (deg) {

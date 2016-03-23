@@ -34,29 +34,40 @@ $(function () {
     }
 
     // 可移区域分析
-    function analysis (cmd) {
-      var reg = analysis.reg[cmd]
-
-      if (reg) {
-        return !reg()
-      } else {
-        return true
+    function analysis (wall) {
+      function isInRange () {
+        return ( 0 > param.x || 9 < param.x || 0 > param.y || 9 < param.y )
       }
-    }
-    // 移动限制
-    analysis.reg = {
-      'GO': function () {
-        return (0 === param.x && 270 === param.deg) || (9 === param.x && 90 === param.deg) || (0 === param.y && 0 === param.deg) || (9 === param.y && 180 === param.deg)
-      },
+
+      if ( isInRange() ) {
+        param.x = param.record.x
+        param.y = param.record.y
+
+        return true
+      } else {
+        param.record.x = param.x
+        param.record.y = param.y
+
+        return false
+      }
     }
 
     // 执行
     return function cmdRun (cmd) {
-      if ( cmdMap[cmd] && analysis(cmd) ) {
+      // 如果指令存在
+      if ( cmdMap[cmd] ) {
         cmdMap[cmd]()
+        // 如果撞墙
+        if ( analysis() ) {
+          console.log('wall!')
+
+          return false
+        }
+
         return true
       } else {
-        console.log('wrong command or its wall!')
+        console.log('wrong command!')
+
         return false
       }
     }
