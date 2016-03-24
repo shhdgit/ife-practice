@@ -7,9 +7,11 @@ $(function () {
   /* --------------控制器--------------- */
   var cmd = (function command (targ) {
     var cmdMap = {
+      // 移动一格
       'GO': function () {
         targ.move()
       },
+      // 转向
       'TUN LEF': function () {
         targ.turn(-90)
       },
@@ -19,6 +21,7 @@ $(function () {
       'TUN BAC': function () {
         targ.turn(180)
       },
+      // 不转向移动
       'TRA TOP': function () {
         targ.moveTo(0)
       },
@@ -31,6 +34,23 @@ $(function () {
       'TRA RIG': function () {
         targ.moveTo(90)
       },
+      // 转向移动
+      'MOV TOP': function () {
+        targ.turnTo(0)
+        targ.move()
+      },
+      'MOV BOT': function () {
+        targ.turnTo(180)
+        targ.move()
+      },
+      'MOV LEF': function () {
+        targ.turnTo(270)
+        targ.move()
+      },
+      'MOV RIG': function () {
+        targ.turnTo(90)
+        targ.move()
+      }
     }
 
     // 可移区域分析
@@ -40,14 +60,12 @@ $(function () {
       }
 
       if ( isInRange() ) {
+        // 撞墙则归位
         param.x = param.record.x
         param.y = param.record.y
 
         return true
       } else {
-        param.record.x = param.x
-        param.record.y = param.y
-
         return false
       }
     }
@@ -75,50 +93,71 @@ $(function () {
 
 
   /* ---------------渲染-------------- */
-  // function render () {
-  //   var timer,
-  //   now
-
-  //   function calcu (start, term) {}
-
-  //   return function animate (ele, attr, interv) {
-  //     if ( !timer ) {
-  //       timer = setInterval(function () {
-  //         ele.style[attr] = ''
-  //       }, interv || 16.666)
-  //     }
-  //   }
-  // }
-
-  function render () {
-    ele.style.border = '0'
-
+  var render = (function () {
+    var Sdeg = 0
     ele.style.top = (param.y * param.speed) + 'px'
     ele.style.left = (param.x * param.speed) + 'px'
-    switch (param.deg) {
-      case 0:
-        ele.style.borderTop = '10px solid blue'
-        break
-      case 180:
-        ele.style.borderBottom = '10px solid blue'
-        break
-      case 270:
-        ele.style.borderLeft = '10px solid blue'
-        break
-      case 90:
-        ele.style.borderRight = '10px solid blue'
-        break
-      default:
-        console.log('error')
-    }
-  }
 
+    return function () {
+      var Odeg = 0
+
+      function animate (old, attr, peace, speed, fn) {
+        var timer = setInterval(function () {
+          var nowPos = parseInt( ele.style[attr].match(/[-]?\d+/g) ) || 0
+
+          if ( old + peace === nowPos ) {
+            clearInterval(timer)
+          } else {
+            var tmp = Math.ceil( Math.abs( ( old + peace - nowPos ) / peace ) * speed )
+            var num = ( 0 < peace ) ? tmp + nowPos : -tmp + nowPos
+            ele.style[attr] = fn(num)
+          }
+        }, 16.666)
+      }
+
+      var x = parseInt( ele.style.left.match(/\d+/g) )
+      animate(x, 'left', ((param.x - param.record.x) * param.speed), 3, function (num) {
+        return (num + 'px')
+      })
+      var y = parseInt( ele.style.top.match(/\d+/g) )
+      animate(y, 'top', ((param.y - param.record.y) * param.speed), 3, function (num) {
+        return (num + 'px')
+      })
+
+      Odeg = param.deg - param.record.deg
+      // 解决0与270度之间的转向问题
+      switch ( Odeg ) {
+        case 270:
+          Odeg = -90
+          break
+        case -270:
+          Odeg = 90
+          break
+        default:
+          break
+      }
+
+      animate(Sdeg, 'webkitTransform', Odeg, 6, function (num) {
+        return ('rotate(' + num + 'deg)')
+      })
+      Sdeg += Odeg
+    }
+  })()
+
+  /* -----------------队列----------------- */
+  function Quequ () {}
 
   /* -----------------controller----------------- */
   function execute () {
     var eText = $('command').value
 
-    if ( cmd(eText) ) render()
+    if ( cmd(eText) ) {
+      render()
+
+      param.record.x = param.x
+      param.record.y = param.y
+      param.record.deg = param.deg
+    }
   }
 
   // 初始化界面
