@@ -144,9 +144,6 @@ $(function () {
     }
   })()
 
-  /* -----------------队列----------------- */
-  function Quequ () {}
-
   /* -----------------controller----------------- */
   function execute () {
     var eText = $('command').value
