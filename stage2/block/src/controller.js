@@ -145,16 +145,24 @@ $(function () {
   })()
 
   /* -----------------controller----------------- */
-  function execute () {
+  var blockQueue = creatQueue()
+
+  function befoExec (eText) {
     var eText = $('command').value
 
-    if ( cmd(eText) ) {
-      render()
+    return function () {
+      if ( cmd(eText) ) {
+        render()
 
-      param.record.x = param.x
-      param.record.y = param.y
-      param.record.deg = param.deg
+        param.record.x = param.x
+        param.record.y = param.y
+        param.record.deg = param.deg
+      }
     }
+  }
+
+  function execute () {
+    blockQueue(befoExec(), command)
   }
 
   // 初始化界面
