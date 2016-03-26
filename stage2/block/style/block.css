@@ -75,15 +75,18 @@ ul {
   background-color: red;
 }
 #command {
-  padding-left: 30px;
+  padding-left: 35px;
   line-height: 20px;
   width: 280px;
-  height: 200px;
+  height: 205px;
   border: 0;
 
   resize: none;
   box-sizing: border-box;
   outline: none;
+
+  background-color: #000;
+  color: green;
 }
 .mycmd {
   position: relative;
@@ -91,7 +94,8 @@ ul {
 
   width: 300px;
   height: 210px;
-  border: 1px solid #000;
+
+  background-color: #000;
 }
 .mycmd ul {
   position: absolute;
@@ -99,7 +103,12 @@ ul {
   left: 0;
 
   width: 30px;
+  height: 100%;
+
+  color: #fff;
+  background-color: #cacaca;
 }
 .mycmd li {
   line-height: 20px;
+  font-weight: 600;
 }

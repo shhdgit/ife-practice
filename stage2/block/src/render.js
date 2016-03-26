@@ -9,6 +9,7 @@ function creatRender (block) {
   return function () {
     var Odeg = 0
 
+    // 动画函数
     function animate (old, attr, peace, speed, fn) {
       var timer = setInterval(function () {
         var nowPos = parseInt( ele.style[attr].match(/[-]?\d+/g) ) || 0
@@ -45,7 +46,7 @@ function creatRender (block) {
         break
     }
 
-    animate(Sdeg, 'webkitTransform', Odeg, 6, function (num) {
+    animate(Sdeg, 'webkitTransform', Odeg, 12, function (num) {
       return ('rotate(' + num + 'deg)')
     })
     Sdeg += Odeg
