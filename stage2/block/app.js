@@ -103,18 +103,23 @@ $(function () {
   })()
 
   function execute () {
+    var i, j
     var eText = getText()
 
-    eText.forEach(function (val, i) {
-      var tmp = lexical(val, cmdMap)
+    for (i = 0, n = eText.length; i < n; i++) {
+      var tmp = lexical(eText[i], cmdMap, i)
 
       if ( typeof tmp.func === 'function' ) {
-        var times = tmp.other || 1
-        for (var i = 0; i < times; i++) {
+        // 加入队列的次数
+        var times = parseInt(tmp.times) || 1
+        for (j = 0; j < times; j++) {
           addToQueue(befoExec(tmp.func))
         }
+      } else {
+        $('leftNum').children[tmp.line].style.backgroundColor = 'red'
+        break
       }
-    })
+    }
   }
 
 

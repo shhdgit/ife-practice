@@ -4,41 +4,43 @@
  * @param  {Object} cmdList 指令列表
  * @return {function,String}         指令,附带信息
  */
-function lexical (command, cmdList) {
+function lexical (command, cmdList, line) {
   var cmd = command.split(' ')
 
   var tmp = cmdList,
-      texttmp, i, n, isNum
+      tmptext, i, n
+
+  var isNum = function (text) {
+    return /\d+/gi.test(text) && !/\D+/gi.test(text)
+  }
+
+  var returnFlase = function () {
+  }
 
   for (i = 0, n = cmd.length; i < n; i++) {
-    texttmp = cmd.shift()
-    isNum = /\d+/gi.test(texttmp) && !/\D+/gi.test(texttmp)
-
-    if (!isNum) {
-      tmp = tmp[texttmp]
-    } else {
-      return {
-        func: tmp,
-        other: texttmp
-      }
-    }
+    tmptext = cmd.shift()
+    tmp = tmp[tmptext]
 
     if ( 'function' === typeof tmp ) {
-      texttmp = cmd.shift()
+      tmptext = cmd.shift()
 
-      return {
-        func: tmp,
-        other: texttmp
+      // 数字之后还有无指令
+      if ( !(0 === cmd.length) ) {
+        break
+      // 为数字或无字符则返回
+      } else if ( isNum(tmptext) || !tmptext ) {
+        return {
+          func: tmp,
+          times: tmptext
+        }
       }
-    } else if ( 'function' !== typeof tmp && tmp ) {
-      console.log('continue')
-    } else {
-      console.log('wrong command')
     }
   }
 
+  console.log('wrong command: line ' + (parseInt(line) + 1))
   return {
     func: undefined,
-    other: undefined
+    times: undefined,
+    line: line
   }
 }

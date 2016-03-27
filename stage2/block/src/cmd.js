@@ -1,11 +1,10 @@
 function creatText () {
   var textval,
-      _this = this,
       leftbar = [].shift.call(arguments),
       lineRecord = 1
 
   function renderTArea () {
-    textval = _this.value.split('\n')
+    textval = this.value.split('\n')
 
     // 行数有变化则重新渲染
     if (lineRecord !== textval.length) {
@@ -19,10 +18,10 @@ function creatText () {
 
       // 行数大于10时,调整textarea大小
       if ( 10 < textval.length ) {
-        _this.style.height = textval.length * 20 + 5 + 'px'
+        this.style.height = textval.length * 20 + 5 + 'px'
         leftbar.style.height = textval.length * 20 + 10 + 'px'
       } else {
-        _this.style.height = '205px'
+        this.style.height = '205px'
         leftbar.style.height = '100%'
       }
 
@@ -30,10 +29,8 @@ function creatText () {
     }
   }
 
-  _this.addEventListener('keydown', function (event) {
-    setTimeout(function () {
-      renderTArea()
-    }, 0)
+  this.addEventListener('keydown', function (event) {
+    setTimeout(renderTArea.bind(this), 0)
   })
 
   return function () {
