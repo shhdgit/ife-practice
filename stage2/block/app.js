@@ -115,6 +115,7 @@ $(function () {
         for (j = 0; j < times; j++) {
           addToQueue(befoExec(tmp.func))
         }
+      // 在错误行变红
       } else {
         $('leftNum').children[tmp.line].style.backgroundColor = 'red'
         break

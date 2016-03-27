@@ -34,9 +34,15 @@ function lexical (command, cmdList, line) {
           times: tmptext
         }
       }
+    } else if ( undefined === tmp ) {
+      console.log('wrong command: line ' + (parseInt(line) + 1))
+      return {
+        func: undefined,
+        times: undefined,
+        line: line
+      }
     }
   }
-
   console.log('wrong command: line ' + (parseInt(line) + 1))
   return {
     func: undefined,
