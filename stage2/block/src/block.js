@@ -37,33 +37,62 @@ CmdBlock.prototype.turnTo = function (deg) {
 }
 
 // move
-CmdBlock.prototype.moveReg = function (orien) {
-  var param = this.param
+CmdBlock.prototype.go = function () {
+  var point = this.getPoint()
 
-  switch (orien) {
-    case 0:
-      param.y -= 1
-      break
-    case 180:
-      param.y += 1
-      break
-    case 270:
-      param.x -= 1
-      break
-    case 90:
-      param.x += 1
-      break
-    default:
-      console.log('wrong orientation!')
-  }
+  this.param.x = point.x
+  this.param.y = point.y
 }
 
 CmdBlock.prototype.moveTo = function (orien) {
-  this.moveReg(orien)
+  var point = this.getPoint(orien)
+
+  this.param.x = point.x
+  this.param.y = point.y
 }
 
-CmdBlock.prototype.move = function () {
-  this.moveReg(this.param.deg)
+/**
+ * 建墙
+ * @param  {Number} x x坐标
+ * @param  {Number} y y坐标
+ * @return {[Object, Object]}   墙的参数, 对应的DOM元素
+ */
+CmdBlock.prototype.build = function (x, y) {
+  var wall = Object.create(Wall)
+  var dom = wall.createAt(x, y)
+
+  return {
+    wall: wall,
+    dom: dom
+  }
+}
+
+CmdBlock.prototype.getPoint = function (orien) {
+  var deg = orien || this.param.deg
+  x = this.param.x,
+  y = this.param.y
+
+  switch (deg) {
+    case 0:
+      y -= 1
+      break
+    case 180:
+      y += 1
+      break
+    case 270:
+      x -= 1
+      break
+    case 90:
+      x += 1
+      break
+    default:
+      console.log('wrong orientation')
+  }
+
+  return {
+    x: x,
+    y: y
+  }
 }
 
 var singleCmdBlock = (function () {

@@ -14,28 +14,34 @@ function lexical (command, cmdList, line) {
     return /\d+/gi.test(text) && !/\D+/gi.test(text)
   }
 
-  var returnFlase = function () {
+  var returnFalse = function () {
   }
 
   for (i = 0, n = cmd.length; i < n; i++) {
     tmptext = cmd.shift()
-    tmp = tmp[tmptext]
+    tmp = tmp[ tmptext ]
 
     if ( 'function' === typeof tmp ) {
       tmptext = cmd.shift()
 
       // 数字之后还有无指令
-      if ( !(0 === cmd.length) ) {
+      if ( !( 0 === cmd.length ) ) {
         break
+      // 如果为粉刷墙
+      } else if ( tmp.name === 'bru' ) {
+        return {
+          func: tmp,
+          argument: tmptext
+        }
       // 为数字或无字符则返回
-      } else if ( isNum(tmptext) || !tmptext ) {
+      } else if ( isNum( tmptext ) || !tmptext ) {
         return {
           func: tmp,
           times: tmptext
         }
       }
     } else if ( undefined === tmp ) {
-      console.log('wrong command: line ' + (parseInt(line) + 1))
+      console.log( 'wrong command: line ' + ( parseInt( line ) + 1 ) )
       return {
         func: undefined,
         times: undefined,
@@ -43,7 +49,7 @@ function lexical (command, cmdList, line) {
       }
     }
   }
-  console.log('wrong command: line ' + (parseInt(line) + 1))
+  console.log( 'wrong command: line ' + ( parseInt( line ) + 1 ) )
   return {
     func: undefined,
     times: undefined,

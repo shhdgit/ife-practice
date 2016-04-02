@@ -32,7 +32,7 @@
       <li>9</li>
       <li>10</li>
     </ul>
-    <div class="board">
+    <div class="board" id="wall">
       <div id="myblock"></div>
       <div></div>
       <div></div>
@@ -135,6 +135,26 @@
       <div></div>
       <div></div>
     </div>
+    <pre class="tips">
+           GO n：向当前方向前进n格
+
+      TUN LEF n：向左转n次
+      TUN RIG n：向右转n次
+      TUN BAC n：向后转n次
+
+      TRA LEF n：向屏幕的左侧移动n格，方向不变
+      TRA TOP n：向屏幕的上面移动n格，方向不变
+      TRA RIG n：向屏幕的右侧移动n格，方向不变
+      TRA BOT n：向屏幕的下面移动n格，方向不变
+
+      MOV LEF n：方向转向屏幕左侧，并向屏幕的左侧移动n格
+      MOV TOP n：方向转向屏幕上面，并向屏幕的上面移动n格
+      MOV RIG n：方向转向屏幕右侧，并向屏幕的右侧移动n格
+      MOV BOT n：方向转向屏幕下面，并向屏幕的下面移动n格
+
+          BUILD：当前方向建墙
+    BUILD color：粉刷墙壁(color为css代码，不填默认为#000)
+    </pre>
     <div class="mycmd">
       <ul id="leftNum">
         <li>1</li>
@@ -150,6 +170,7 @@
   <script src="src/queue.js"></script>
   <script src="src/render.js"></script>
   <script src="src/block.js"></script>
+  <script src="src/wall.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

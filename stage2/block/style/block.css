@@ -19,7 +19,7 @@ body {
 }
 .container {
   position: absolute;
-  top: 0;
+  top: -100px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -111,4 +111,8 @@ ul {
 .mycmd li {
   line-height: 20px;
   font-weight: 600;
+}
+.tips {
+  position: absolute;
+  right: -70px;
 }
