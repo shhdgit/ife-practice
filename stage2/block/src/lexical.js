@@ -28,7 +28,7 @@ function lexical (command, cmdList, line) {
       if ( !( 0 === cmd.length ) ) {
         break
       // 如果为粉刷墙
-      } else if ( tmp.name === 'bru' ) {
+      } else if ( '' !== tmp.name ) {
         return {
           func: tmp,
           argument: tmptext

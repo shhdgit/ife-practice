@@ -4,6 +4,16 @@ $(function () {
       param = myblock.param,
       wallArr = []
 
+  function haveWall ( x, y ) {
+    return wallArr.some(function ( wall, i ) {
+      if ( wall.wall.id === ( y * 10 + x ) ) return true
+      return false
+    })
+  }
+
+  function wallInRange ( x, y ) {
+    return ( 0 > x || 9 < x || 0 > y || 9 < y )
+  }
   /* --------------控制器--------------- */
   var cmdMap = {
       // 移动一格
@@ -55,6 +65,7 @@ $(function () {
         myblock.turnTo(90)
         myblock.go()
       },
+      'TO': function movto ( position ) {},
     },
     // 建墙
     'BUILD': function () {
@@ -64,16 +75,7 @@ $(function () {
       x = point.x
       y = point.y
 
-      var haveId = wallArr.some(function ( wall, i ) {
-        if ( wall.wall.id === ( y * 10 + x ) ) return true
-        return false
-      })
-
-      var isInRange = function () {
-        return ( 0 > x || 9 < x || 0 > y || 9 < y )
-      }
-
-      if ( !haveId && !isInRange() ) {
+      if ( !haveWall( x, y ) && !wallInRange( x, y ) ) {
         wallArr[ wallArr.length ] = myblock.build( x, y )
       } else {
         console.log('already built')
@@ -162,25 +164,40 @@ $(function () {
       var tmp = lexical( eText[ i ], cmdMap, i )
 
       if ( typeof tmp.func === 'function' ) {
-        if ( tmp.func.name === 'bru' ) {
+        if ( '' !== tmp.func.name ) {
           addToQueue( befoExec( tmp.func( tmp.argument ) ) )
         } else {
           // 加入队列的次数
           var times = parseInt( tmp.times ) || 1
+
           for ( j = 0; j < times; j++ ) {
             addToQueue( befoExec( tmp.func ) )
           }
         }
       // 在错误行变红
       } else {
-        $('leftNum').children[tmp.line].style.backgroundColor = 'red'
+        $( 'leftNum' ).children[ tmp.line ].setAttribute( 'style', 'background-color:red;' )
         break
       }
     }
   }
 
+  // 随机建墙
+  function randomWall () {
+    var x = Math.floor( Math.random() * 10 ),
+        y = Math.floor( Math.random() * 10 ),
+        isStayPos = ( x === param.x && y === param.y )
+
+    if ( !haveWall( x, y ) && !wallInRange( x, y ) && !isStayPos ) {
+      wallArr[ wallArr.length ] = myblock.build( x, y )
+    } else {
+      randomWall()
+    }
+  }
+
 
   // 绑定按钮
-  $('executeBtn').addEventListener('click', execute)
+  $( 'executeBtn' ).addEventListener( 'click', execute )
+  $( 'randomwall' ).addEventListener( 'click', randomWall )
 
 })

@@ -67,6 +67,11 @@ CmdBlock.prototype.build = function (x, y) {
   }
 }
 
+/**
+ * 获取面朝方向的x,y
+ * @param  {Number} orien 方向
+ * @return {[Number, Number]}       x,y值
+ */
 CmdBlock.prototype.getPoint = function (orien) {
   var deg = orien || this.param.deg
   x = this.param.x,
