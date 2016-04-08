@@ -163,7 +163,7 @@ $(function () {
     for ( i = 0, n = eText.length; i < n; i++ ) {
       var tmp = lexical( eText[ i ], cmdMap, i )
 
-      if ( typeof tmp.func === 'function' ) {
+      if ( 'function' === typeof tmp.func ) {
         if ( '' !== tmp.func.name ) {
           addToQueue( befoExec( tmp.func( tmp.argument ) ) )
         } else {
