@@ -1,19 +1,8 @@
 $(function () {
-  var myblock = new singleCmdBlock($('myblock'), 50),
+  var myblock = new Block($('myblock'), 50),
       ele = myblock.ele,
       param = myblock.param,
       wallArr = []
-
-  function haveWall ( x, y ) {
-    return wallArr.some(function ( wall, i ) {
-      if ( wall.wall.id === ( y * 10 + x ) ) return true
-      return false
-    })
-  }
-
-  function wallInRange ( x, y ) {
-    return ( 0 > x || 9 < x || 0 > y || 9 < y )
-  }
   /* --------------控制器--------------- */
   var cmdMap = {
       // 移动一格
@@ -104,6 +93,17 @@ $(function () {
     },
   }
 
+  function haveWall ( x, y ) {
+    return wallArr.some(function ( wall, i ) {
+      if ( wall.wall.id === ( y * 10 + x ) ) return true
+      return false
+    })
+  }
+
+  function wallInRange ( x, y ) {
+    return ( 0 > x || 9 < x || 0 > y || 9 < y )
+  }
+
   // 可移区域分析
   function analysis ( wallArr ) {
     function isInRange () {
@@ -130,17 +130,15 @@ $(function () {
     }
   }
 
-  /* ---------------渲染-------------- */
-  var render = creatRender( myblock )
+  /* ---------------方块渲染-------------- */
+  var blockRender = new BlockRender( myblock )
 
   /* -----------------controller----------------- */
-  var addToQueue = creatQueue()
-
   function befoExec ( fn ) {
     return function () {
       fn()
       if ( analysis( wallArr ) ) {
-        render()
+        blockRender.render()
 
         param.record.x = param.x
         param.record.y = param.y
@@ -150,28 +148,28 @@ $(function () {
   }
 
   // 初始化界面
-  var getText
+  var textarea
   var init = ( function () {
-    getText = creatText.call( $( 'command' ), $( 'leftNum' ) )
-    render()
+    textarea = new CmdArea( $( 'command' ), $( 'leftNum' ) )
+    blockRender.render()
   } )()
 
   function execute () {
     var i, j
-    var eText = getText()
+    var eText = textarea.getValue()
 
     for ( i = 0, n = eText.length; i < n; i++ ) {
       var tmp = lexical( eText[ i ], cmdMap, i )
 
       if ( 'function' === typeof tmp.func ) {
         if ( '' !== tmp.func.name ) {
-          addToQueue( befoExec( tmp.func( tmp.argument ) ) )
+          bundle.addToQueue( befoExec( tmp.func( tmp.argument ) ) )
         } else {
           // 加入队列的次数
           var times = parseInt( tmp.times ) || 1
 
           for ( j = 0; j < times; j++ ) {
-            addToQueue( befoExec( tmp.func ) )
+            bundle.addToQueue( befoExec( tmp.func ) )
           }
         }
       // 在错误行变红
