@@ -3,6 +3,7 @@ $(function () {
       ele = myblock.ele,
       param = myblock.param,
       wallArr = []
+
   /* --------------控制器--------------- */
   var cmdMap = {
       // 移动一格

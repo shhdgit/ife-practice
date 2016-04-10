@@ -47,13 +47,9 @@ Block.prototype.moveTo = function ( orien ) {
  * @return {[Object, Object]}   墙的参数, 对应的DOM元素
  */
 Block.prototype.build = function (x, y) {
-  var wall = Object.create(Wall)
-  var dom = wall.createAt(x, y)
+  var wall = new Wall( x, y )
 
-  return {
-    wall: wall,
-    dom: dom
-  }
+  return wall
 }
 
 /**
@@ -146,8 +142,8 @@ function BlockRender ( ele ) {
       param = ele.param
 
   function init () {
-    dom.style.top = (param.y * param.speed) + 'px'
-    dom.style.left = (param.x * param.speed) + 'px'
+    dom.style.top = ( param.y * param.speed ) + 'px'
+    dom.style.left = ( param.x * param.speed ) + 'px'
   }
 
   init()
@@ -164,17 +160,17 @@ BlockRender.prototype.render = function () {
 
   // 改变left
   left = parseInt( dom.style.left.match( /\d+/g ) )
-  if (param.x !== left / param.speed) {
-    this.animate(left, 'left', ((param.x - param.record.x) * param.speed), 3, function ( num ) {
-      return (num + 'px')
+  if ( param.x !== left / param.speed ) {
+    this.animate(left, 'left', ( ( param.x - param.record.x ) * param.speed ), 3, function ( num ) {
+      return ( num + 'px' )
     })
   }
 
   // 改变top
   top = parseInt( dom.style.top.match( /\d+/g ) )
-  if (param.y !== top / param.speed) {
-    this.animate(top, 'top', ((param.y - param.record.y) * param.speed), 3, function ( num ) {
-      return (num + 'px')
+  if ( param.y !== top / param.speed ) {
+    this.animate(top, 'top', ( ( param.y - param.record.y ) * param.speed ), 3, function ( num ) {
+      return ( num + 'px' )
     })
   }
 
@@ -194,7 +190,7 @@ BlockRender.prototype.render = function () {
 
   if ( tmpDeg ) {
     this.animate(this.deg, 'webkitTransform', tmpDeg, 12, function (num) {
-      return ('rotate(' + num + 'deg)')
+      return ( 'rotate(' + num + 'deg)' )
     })
     this.deg += tmpDeg
   }
@@ -230,31 +226,33 @@ BlockRender.prototype.animate = function ( old, attr, peace, speed, fn ) {
 }
 
 /* --------------------------------------墙-------------------- */
-var Wall = {
-  parent: $('wall'),
+function Wall ( x, y ) {
+  var newObj = {
+    x: x,
+    y: y,
+    id: y * 10 + x
+  }
 
-  /**
-   * 新建一堵墙
-   * @param  {Number} x [description]
-   * @param  {Number} y [description]
-   * @return {Object}   对应的dom元素
-   */
-  createAt: function (x, y) {
-    this.x = x
-    this.y = y
-    this.id = y * 10 + x
+  return {
+    wall: newObj,
+    dom: this.addWall( x, y )
+  }
+}
 
-    return this.addWall(x, y)
-  },
+Wall.prototype.parent = $( 'wall' )
 
-  addWall: function (x, y) {
-    var wall = document.createElement('div')
+/**
+ * 新建一个墙dom，并加入页面
+ * @param {number} x x坐标
+ * @param {number} y y坐标
+ */
+Wall.prototype.addWall = function ( x, y ) {
+  var wall = document.createElement( 'div' )
 
-    wall.setAttribute('style', 'position:absolute;background-color:#eee;top:' + y * 50 + 'px;left:' + x * 50 + 'px;')
-    this.parent.appendChild(wall)
+  wall.setAttribute( 'style', 'position:absolute;background-color:#eee;top:' + y * 50 + 'px;left:' + x * 50 + 'px;' )
+  this.parent.appendChild( wall )
 
-    return wall
-  },
+  return wall
 }
 
 /* --------------------------------------bundle-------------------- */
