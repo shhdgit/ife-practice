@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UI component</title>
+
+  <link rel="stylesheet" href="style/sUI.css">
+</head>
+<body>
+  <button id="btn">弹出</button>
+  <div class="modal" id="modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" data-title="this is title">
+          <h4>这是一个浮出层</h4>
+        </div>
+        <div class="modal-body" data-content="this is content">
+          <p>这是一个浮出层</p>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel">取消</button>
+          <button id="confirm">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="src/utils.js"></script>
+  <script src="src/sUI.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
