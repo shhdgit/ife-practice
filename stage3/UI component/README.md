@@ -8,7 +8,8 @@
 
   **任务描述**
 
-  1.  **浮出层**
+  1.  **浮出层** [http://rollaround.cn/demo/stage3/UI%20component/](http://rollaround.cn/demo/stage3/UI%20component/)
+
       参考如下设计图，实现一个浮出层的UI组件实现
       ![](img/task_3_37_1.jpg)
 
