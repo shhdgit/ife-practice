@@ -1,0 +1,10 @@
+body {
+  margin: 0;
+}
+.main {
+  margin-left: 10%;
+  margin-top: 5%;
+}
+.main div {
+  margin-bottom: 10px;
+}

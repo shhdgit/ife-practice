@@ -13,11 +13,10 @@
     var header = document.querySelector('#test')
 
     function movable ( event ) {
-      var dX = event.clientX - oldMouseX,
-          dY = event.clientY - oldMouseY
+      var dX = parseInt(event.clientX - oldMouseX),
+          dY = parseInt(event.clientY - oldMouseY)
 
-      header.style.left = oldDomX + dX + 'px'
-      header.style.top = oldDomY + dY + 'px'
+      header.setAttribute('style','background-color: red;width: 100px;height: 100px;position: absolute;top: 100px;left: 100px;transform:translate(' + (oldDomX + dX) + 'px,' + (oldDomY + dY) + 'px)')
     }
 
     var a = {
@@ -29,11 +28,11 @@
     test.a = 'a'
 
     header.addEventListener( 'mousedown', function ( e ) {
-      console.log(test.a,test.b)
-      oldDomX = header.offsetLeft
-      oldDomY = header.offsetTop
+      oldDomX = header.getAttribute( 'transform' )
+      oldDomY = header.getAttribute( 'transform' )
       oldMouseX = e.clientX
       oldMouseY = e.clientY
+      console.log(oldDomX,oldDomY)
 
       header.addEventListener( 'mousemove', movable )
     } )

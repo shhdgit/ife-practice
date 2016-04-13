@@ -1,13 +1,9 @@
-html {
-  height: 100%;
-}
-body {
-  margin: 0;
-  height: 100%;
-}
 h4 {
   margin-top: 0;
   margin-bottom: 0;
+}
+button {
+  cursor: pointer;
 }
 
 /* *********************************modal********************************* */
@@ -25,13 +21,15 @@ h4 {
 }
 .modal-content {
   position: absolute;
-  top: 30%;
-  left: 25%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
 
   width: 620px;
   height: 300px;
   border: 1px solid #000;
-  /*margin: auto;*/
 
   background-color: #fff;
 }
@@ -41,6 +39,7 @@ h4 {
 }
 .modal-header {
   height: 40px;
+  padding-left: 10px;
   border: 1px solid #000;
 
   background-color: #666;
@@ -49,14 +48,11 @@ h4 {
 .modal-header h4 {
   height: 40px;
   line-height: 40px;
-  padding-left: 10px;
 
   color: #fff;
 }
 .modal-body {
   height: 55%;
-}
-.modal-body p {
   padding-left: 10px;
 }
 .modal-footer button {

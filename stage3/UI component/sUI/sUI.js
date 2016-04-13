@@ -7,7 +7,6 @@ sUI = {
           options = {
         enable: true,
         mask: .6,
-        title: dom.querySelector( '.modal-header' ).dataset.title,
         content: dom.querySelector( '.modal-body' ).dataset.content
       }
 
@@ -94,7 +93,7 @@ sUI = {
           if ( this.options.enable ) {
             this.dom.setAttribute( 'style', 'display:block;')
           } else {
-            alert( this.options.title + ':' + this.options.content + '!' )
+            alert( this.options.content )
           }
         }
 
