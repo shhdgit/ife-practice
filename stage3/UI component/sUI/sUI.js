@@ -23,9 +23,14 @@ sUI = {
     }
   },
 
+  /* ---------------------------- 表格 ------------------------------ */
+  form: {
+    init: function ( id, opts ) {}
+  },
 
   /* ---------------------------- 构造函数 ------------------------------ */
   construct: {
+    // Modal
     Modal: function Modal ( dom, options ) {
       this.dom = dom
       this.options = options
@@ -102,6 +107,9 @@ sUI = {
         }
       }
 
-    }
+    },
+    // Form
+    Form: function Form ( dom, options ) {},
+
   }
 }

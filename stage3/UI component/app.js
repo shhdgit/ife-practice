@@ -1,17 +1,26 @@
 $(function () {
-  var modal = sUI.modal.init( 'modal' )
+  var useUI = $( 'useSUI' ),
+      modalBtn = $( 'modalBtn' ),
+      modalCancel = $( 'modalCancel' ),
+      modalConfirm = $( 'modalConfirm' )
 
-  $( 'useSUI' ).addEventListener( 'click', function () {
+  var modal = sUI.modal.init( 'modal', {
+    enable: useUI.checked
+  } )
+
+  useUI.addEventListener( 'click', function () {
     modal.options.enable = $( 'useSUI' ).checked
   } )
 
-  $( 'btn' ).addEventListener( 'click', function () {
+  modalBtn.addEventListener( 'click', function () {
     modal.show()
   } )
-  $( 'cancel' ).addEventListener( 'click', function () {
+
+  modalCancel.addEventListener( 'click', function () {
     modal.hide()
   } )
-  $( 'confirm' ).addEventListener( 'click', function () {
+
+  modalConfirm.addEventListener( 'click', function () {
     modal.hide()
   } )
 })
