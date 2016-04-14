@@ -3,8 +3,7 @@
 ### **API**
 ___
 #### **模态框**
-### **html:**
-  >
+## **html:**
     <div class="modal" id="modal">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -21,7 +20,7 @@ ___
       </div>
     </div>
 
-### **js:**
+## **js:**
 
 ##### Usage
 
@@ -59,9 +58,9 @@ ___
 
 ##### Methods
 
-  `show()-显示模态框`
+  `modal.show()-显示模态框`
 
-  `hide()-隐藏模态框`
+  `modal.hide()-隐藏模态框`
 
 ##### Properties
 
