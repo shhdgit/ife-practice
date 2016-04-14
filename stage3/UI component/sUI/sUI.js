@@ -40,7 +40,7 @@ sUI = {
       } )
 
       /**
-       * 点击header移动模块狂
+       * 点击header移动模态框
        * @return {undefined} [description]
        */
       function headerFn () {
