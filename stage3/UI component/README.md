@@ -65,15 +65,12 @@ ___
 
 ##### Properties
 
-  `modal.options`
-
-  模态框的参数：
-
-    <ul>
-      <li>enable-{boolean}-是否启用SUI-modal</li>
-      <li>mask-{number}-模态框遮罩的透明度(0-1)</li>
-      <li>content-{string}-不启用SUI-modal时，弹出的内容</li>
-    </ul>
+  `modal.options-模态框的参数：`
+  <ul>
+    <li>enable-{boolean}-是否启用SUI-modal</li>
+    <li>mask-{number}-模态框遮罩的透明度(0-1)</li>
+    <li>content-{string}-不启用SUI-modal时，弹出的内容</li>
+  </ul>
 
 ___
 
