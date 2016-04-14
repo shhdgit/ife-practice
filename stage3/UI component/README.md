@@ -23,11 +23,11 @@ ___
 
 ### **js:**
 
-#### Usage
+##### Usage
 
   `sUI.modal.init(id, {options})`
 
-#### Arguments
+##### Arguments
   <table>
     <tbody>
       <tr>
@@ -54,20 +54,16 @@ ___
     </tbody>
   <table>
 
-#### Returns
+##### Returns
   modal object
 
-#### Methods
+##### Methods
 
-  `show()`
+  `show()-显示模态框`
 
-  显示模态框
+  `hide()-隐藏模态框`
 
-  `hide()`
-
-  隐藏模态框
-
-#### Properties
+##### Properties
 
   `modal.options`
 
@@ -82,7 +78,7 @@ ___
 ___
 
 ### **任务描述**
-___
+
   **任务目的**
 
   > 练习综合运用HTML、CSS、JavaScript实现局部功能
