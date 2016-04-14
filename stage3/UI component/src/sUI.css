@@ -15,6 +15,12 @@ button {
 
   width: 100%;
   height: 100%;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 .modal-dialog {
   height: 100%;
@@ -64,4 +70,20 @@ button {
 
   color: #fff;
   background-color: #666;
+}
+
+/* *********************************form********************************* */
+.form {
+  border-collapse: collapse;
+  text-align: center;
+}
+.form th,
+.form td {
+  width: 150px;
+  height: 50px;
+  border: 1px solid #c8c8c8;
+}
+.form th {
+  color: #fff;
+  background-color: #333;
 }

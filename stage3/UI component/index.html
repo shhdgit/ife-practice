@@ -4,17 +4,37 @@
   <meta charset="UTF-8">
   <title>UI component</title>
 
-  <link rel="stylesheet" href="sUI/sUI.css">
+  <link rel="stylesheet" href="src/sUI.css">
   <link rel="stylesheet" href="style/main.css">
 </head>
 <body>
   <div class="main">
     <div>
-      <div>是否使用sUI：<input type="checkbox" id="useSUI" checked></div>
+      <div>是否使用浮出层：<input type="checkbox" id="useSUI" checked></div>
       <div>浮出层：<button id="modalBtn">弹出</button></div>
     </div>
-    <div class="form">
-    </div>
+
+    表格：
+    <table class="form" id="form">
+      <tbody id="form-header">
+        <tr>
+          <th>姓名</th>
+          <th>语文</th>
+          <th>数学</th>
+          <th>英语</th>
+          <th>总分</th>
+        </tr>
+      </tbody>
+      <tbody id="form-body">
+        <tr>
+          <td>小明</td>
+          <td>80</td>
+          <td>90</td>
+          <td>70</td>
+          <td>240</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="modal" id="modal">
@@ -34,8 +54,8 @@
     </div>
   </div>
 
-  <script src="src/utils.js"></script>
-  <script src="sUI/sUI.js"></script>
+  <script src="utils.js"></script>
+  <script src="src/sUI.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
