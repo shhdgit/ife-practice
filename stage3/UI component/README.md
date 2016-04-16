@@ -93,4 +93,66 @@ ___
   <table>
 
 ___
+#### **表格**
+## **html:**
+    <table class="form" id="form">
+      <tbody id="form-header">
+        <tr>
+          <th>姓名</th>
+          <th>语文</th>
+          <th>数学</th>
+          <th>英语</th>
+          <th>总分</th>
+          ...
+        </tr>
+      </tbody>
+      <tbody id="form-body">
+        <tr>
+          <td>小明</td>
+          <td>80</td>
+          <td>90</td>
+          <td>70</td>
+          <td>240</td>
+          ...
+        </tr>
+        ...
+      </tbody>
+    </table>
+
+## **js:**
+
+##### Usage
+
+  `sUI.form.init(id, {options})`
+
+##### Arguments
+  <table>
+    <tbody>
+      <tr>
+        <th>Param</th>
+        <th>Type</th>
+        <th>Detail</th>
+      </tr>
+      <tr>
+        <td>id</td>
+        <td>string</td>
+        <td>最外层modal的id</td>
+      </tr>
+      <tr>
+        <td>options</td>
+        <td>object</td>
+        <td>表格参数设置：</br>
+          <ul>
+            <li>enableline-{string}-哪几列启用排序('all'-全部启用，'1,2,3...'-1,2,3...列启用)</li>
+            <li>algo-{function}-排序算法</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  <table>
+
+##### Returns
+  form object
+
+
 

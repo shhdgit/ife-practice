@@ -195,17 +195,31 @@
 
           if ( 'all' === enableline[0] ) {
             initHelper( 1, function ( i ) {
+              var header = formHeader[ i ],
+                  div = document.createElement( 'div' )
+
               oneLineData( i )
-              formHeader[ i ].style.backgroundColor = 'red'
-              formHeader[ i ].addEventListener( 'click', function () {
+
+              header.setAttribute( 'style', 'position:relative;cursor:pointer;' )
+              div.setAttribute( 'style', 'position:absolute;top:25px;right:35px;border-top: 5px solid #fff;border-left: 5px solid #333;border-right: 5px solid #333;background-color:#fff;cursor:pointer;' )
+              header.appendChild( div )
+
+              header.addEventListener( 'click', function () {
                 that.formsort( data[ enableline[ i ] ], enableline[ i ] )
               } )
             } )
           } else {
             initHelper( 0, function ( i ) {
+              var header = formHeader[ enableline[ i ] ],
+                  div = document.createElement( 'div' )
+
               oneLineData( enableline[ i ] )
-              formHeader[ enableline[ i ] ].setAttribute( 'style', 'background-color:red;cursor:pointer;' )
-              formHeader[ enableline[ i ] ].addEventListener( 'click', function () {
+
+              header.setAttribute( 'style', 'position:relative;cursor:pointer;' )
+              div.setAttribute( 'style', 'position:absolute;top:25px;right:35px;border-top: 5px solid #fff;border-left: 5px solid #333;border-right: 5px solid #333;background-color:#fff;cursor:pointer;' )
+              header.appendChild( div )
+
+              header.addEventListener( 'click', function () {
                 that.formsort( data[ enableline[ i ] ], enableline[ i ] )
               } )
             } )

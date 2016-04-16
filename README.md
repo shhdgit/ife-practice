@@ -9,4 +9,4 @@
     * 听指令的小方块 -- 80% [http://rollaround.cn/demo/block/](http://rollaround.cn/demo/block/)
 
   > * stage3
-    * UI component -- 15% [http://rollaround.cn/demo/stage3/UI%20component/](http://rollaround.cn/demo/stage3/UI%20component/)
+    * UI component -- 45% [http://rollaround.cn/demo/stage3/UI%20component/](http://rollaround.cn/demo/stage3/UI%20component/)
