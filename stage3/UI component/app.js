@@ -26,5 +26,7 @@ $(function () {
   } )
 
   // form
-  var form = sUI.form.init( 'form' )
+  var form = sUI.form.init( 'form', {
+    enableline: '1,2,3,4'
+  } )
 })

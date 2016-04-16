@@ -95,7 +95,29 @@
 
             options = {
               enableline: 'all',
-              sort: function sort () {},
+              algo: function ( arr ) {
+                var i, j, sortLen, temp
+                var sorted = [],
+                    arrLen = arr.length
+
+                sorted.push( arr[0] )
+
+                for ( i = 1; i < arrLen; i++ ) {
+                  temp = sorted.some( function ( item, j ) {
+                    if ( item.data > arr[ i ].data ) {
+                      sorted.splice( j, 0, arr[ i ] )
+
+                      return true
+                    } else {
+                      return false
+                    }
+                  } )
+
+                  if ( !temp ) sorted.push( arr[ i ] )
+                }
+
+                return sorted
+              },
             }
         // 更改配置项
         if ( opts ) {
@@ -127,9 +149,71 @@
           } )
         }
 
-        fFrozen()
+        /**
+         * 数据初始化
+         * @return {undefined} [description]
+         */
+        function initData () {
+          var i
+          var enableline = options.enableline.split( ',' ),
+              formHeader = dom.querySelectorAll( '#form-header th' ),
+              formBody = dom.querySelectorAll( '#form-body tr' ),
+              enableLen = enableline.length,
+              headerLen = formHeader.length,
+              bodyLen = formBody.length,
+              data = this.data,
+              that = this
 
-        newform.initData()
+          /**
+           * 获取第index行的数据
+           * @param  {number} index 第几行
+           * @return {undefined}       [description]
+           */
+          function oneLineData ( index ) {
+            var i, tmpNode
+
+            data[ index ] = []
+
+            for ( i = 0; i < bodyLen; i++ ) {
+              tmpNode = formBody[ i ].querySelectorAll( 'td' )[ index ]
+
+              data[ index ].push({
+                data: parseInt(tmpNode.innerText),
+                parent: tmpNode.parentNode
+              })
+            }
+          }
+
+          function initHelper ( config, fn ) {
+            var i
+            var length = 1 === config ? headerLen : enableLen
+
+            for ( i = 0; i < length; i++ ) {
+              fn( i )
+            }
+          }
+
+          if ( 'all' === enableline[0] ) {
+            initHelper( 1, function ( i ) {
+              oneLineData( i )
+              formHeader[ i ].style.backgroundColor = 'red'
+              formHeader[ i ].addEventListener( 'click', function () {
+                that.formsort( data[ enableline[ i ] ], enableline[ i ] )
+              } )
+            } )
+          } else {
+            initHelper( 0, function ( i ) {
+              oneLineData( enableline[ i ] )
+              formHeader[ enableline[ i ] ].setAttribute( 'style', 'background-color:red;cursor:pointer;' )
+              formHeader[ enableline[ i ] ].addEventListener( 'click', function () {
+                that.formsort( data[ enableline[ i ] ], enableline[ i ] )
+              } )
+            } )
+          }
+        }
+
+        fFrozen()
+        initData.call( newform )
 
         return newform
       }
@@ -174,45 +258,41 @@
         this.dom = dom
         this.options = options
         this.data = []
+        this.order = NaN
 
         // ************************** Form's prototype **************************
-        if ( 'function' !== typeof this.initData ) {
-          Form.prototype.initData = function () {
-            var i
-            var enableline = this.options.enableline.split( ',' ),
-                formHeader = this.dom.querySelectorAll( '#form-header th' ),
-                headerLen = formHeader.length,
-                formBody = this.dom.querySelectorAll( '#form-body tr' ),
-                bodyLen = formBody.length,
-                data = this.data
+        if ( 'function' !== typeof this.formsort ) {
+          Form.prototype.formsort = function () {
+            var neworder
 
-            /**
-             * 获取第index行的数据
-             * @param  {number} index 第几行
-             * @return {undefined}       [description]
-             */
-            function oneLineData ( index ) {
-              var i, tmpNode
+            return function ( data, line ) {
+              var i, newoLen
+              var tmpHtml = '',
+                  formbody = this.dom.querySelector( '#form-body' )
 
-              data[ index ] = []
+              if ( line !== this.order ) {
+                neworder = this.options.algo( data )
+                newoLen = neworder.length
 
-              for ( i = 0; i < bodyLen; i++ ) {
-                tmpNode = formBody[ i ].querySelectorAll( 'td' )[ index ]
+                this.order = line
 
-                data[ index ].push({
-                  data: tmpNode.innerText,
-                  parent: tmpNode.parentNode
-                })
+                for ( i = 0; i < newoLen; i++ ) {
+                  tmpHtml += neworder[ i ].parent.outerHTML
+                }
+
+                formbody.innerHTML = tmpHtml
+              } else {
+                neworder.reverse()
+                newoLen = neworder.length
+
+                for ( i = 0; i < newoLen; i++ ) {
+                  tmpHtml += neworder[ i ].parent.outerHTML
+                }
+
+                formbody.innerHTML = tmpHtml
               }
             }
-
-
-            if ( 'all' === enableline[0] ) {
-              for ( i = 0; i < headerLen; i++ ) {
-                oneLineData( i )
-              }
-            }
-          }
+          }()
         }
       },
 

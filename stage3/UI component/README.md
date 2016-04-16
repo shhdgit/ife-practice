@@ -65,13 +65,32 @@ ___
   `modal.hide()-隐藏模态框`
 
 ##### Properties
+  `modal.options-模态框的参数：(例：modal.options.enable)`
 
-  `modal.options-模态框的参数：`
-  <ul>
-    <li>enable-{boolean}-是否启用SUI-modal</li>
-    <li>mask-{number}-模态框遮罩的透明度(0-1)</li>
-    <li>content-{string}-不启用SUI-modal时，弹出的内容</li>
-  </ul>
+  <table>
+    <tbody>
+      <tr>
+        <th>Param</th>
+        <th>Type</th>
+        <th>Detail</th>
+      </tr>
+      <tr>
+        <td>enable</td>
+        <td>boolean</td>
+        <td>是否启用SUI-modal</td>
+      </tr>
+      <tr>
+        <td>mask</td>
+        <td>number</td>
+        <td>模态框遮罩的透明度(0-1)</td>
+      </tr>
+      <tr>
+        <td>content</td>
+        <td>string</td>
+        <td>不启用SUI-modal时，弹出的内容</td>
+      </tr>
+    </tbody>
+  <table>
 
 ___
 
