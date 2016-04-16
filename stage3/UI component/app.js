@@ -1,4 +1,5 @@
 $(function () {
+  // modal
   var useUI = $( 'useSUI' ),
       modalBtn = $( 'modalBtn' ),
       modalCancel = $( 'modalCancel' ),
@@ -23,4 +24,7 @@ $(function () {
   modalConfirm.addEventListener( 'click', function () {
     modal.hide()
   } )
+
+  // form
+  var form = sUI.form.init( 'form' )
 })
