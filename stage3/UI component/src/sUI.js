@@ -46,15 +46,11 @@
             oldMouseX = e.clientX
             oldMouseY = e.clientY
 
-            header.addEventListener( 'mousemove', movable )
+            document.addEventListener( 'mousemove', movable )
           } )
 
           header.addEventListener( 'mouseup', function () {
-            header.removeEventListener( 'mousemove', movable )
-          } )
-
-          header.addEventListener( 'mouseout', function () {
-            header.removeEventListener( 'mousemove', movable )
+            document.removeEventListener( 'mousemove', movable )
           } )
         }
 
