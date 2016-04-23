@@ -1,0 +1,28 @@
+{
+  "name": "quesys",
+  "version": "1.0.0",
+  "description": "my questionnaire system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "javascript": "browserify src/app.js -o bundle.js",
+    "start": "npm run watch",
+    "watch": "watchify src/app.js -o dist/bundle.js -d -v",
+    "build": "npm run javascript"
+  },
+  "browserify": {
+    "transform": [
+      ["babelify", {
+        "presets": ["react"]
+      }]
+    ]
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.2.0",
+    "react": "^15.0.1",
+    "react-dom": "^15.0.1"
+  }
+}
