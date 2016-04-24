@@ -10,18 +10,19 @@ p {
   left: 0;
   width: 100%;
   height: 100%;
-  
-  background-color: rgba(0,0,0,.3);
+
   overflow: hidden;
 }
 .sui-modal-dialog {
   position: absolute;
   top: 50%;
   left: 50%;
-  
+
   width: 300px;
   height: 200px;
-  
+  padding-left: 10px;
+  padding-right: 10px;
+
   border-radius: 2px;
   background-color: #fff;
   -webkit-user-select: none;
@@ -31,19 +32,37 @@ p {
 }
 .sui-modal-header {
   height: 50px;
-  
+  margin-left: -10px;
+  margin-right: -10px;
+  padding-left: 10px;
+  padding-right: 10px;
+
   cursor: move;
 }
 .sui-modal-header p {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
   border-bottom: 1px solid #e9e9e9;
   line-height: 50px;
-  
+
   vertical-align: middle;
 }
 .sui-modal-body {
-  padding-left: 20px;
-  padding-right: 20px;
+  height: 80px;
+
+  padding: 10px;
+}
+.sui-modal-footer button {
+  float: right;
+
+  min-width: 60px;
+  margin-right: 15px;
+  padding: 10px;
+  border: 1px solid #eee;
+
+  background-color: #fff;
+  cursor: pointer;
+}
+.sui-modal-footer button:hover {
+  background-color: #e9e9e9;
 }

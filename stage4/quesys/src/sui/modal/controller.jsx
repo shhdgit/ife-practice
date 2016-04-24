@@ -3,58 +3,47 @@ const ReactDOM = require( 'react-dom' )
 
 const Modal = require( './modal.jsx' )
 
-function ModalCons ( dom, configs ) {
-  var _this = this
-  
-  function createDOM () {
+function ModalCons ( dom, config ) {
+  function createDom () {
     const modal = ReactDOM.render(
-      <div onClick={_this.toggle.bind( _this )}>
-        <Modal config={configs} />
-      </div>,
+      <Modal config={config} />,
       dom
     )
-    
+
     return modal
   }
-  
-  this.dom = createDOM()
-  this.configs = configs
-  this.flag = 1
+
+  this.reactDom = createDom()
+  this.config = config
 }
 
 ModalCons.prototype.toggle = function () {
-  if ( this.configs.enable ) {
-    if ( !this.flag ) {
-      this.dom.style.display = 'block'
-    } else {
-      this.dom.style.display = 'none'
-    }
-    
-    this.flag = !this.flag
+  if ( this.config.enable ) {
+    this.reactDom.toggle()
   } else {
-    alert( this.configs.content )
+    alert( this.config.content )
   }
 }
 
 function init ( id, config ) {
   let prop, modal
   const dom = document.querySelector( id )
-  
-  const configs = {
+
+  const defConf = {
     enable: true,
     mask: .6,
     content: dom.innerText,
-    title: dom.dataset.title
+    title: dom.dataset.title,
+    modalstyle: 'comfirm'
   }
-  
+
   for ( prop in config ) {
-    if ( configs[ prop ] ) configs[ prop ] = config[ prop ]
+    if ( defConf[ prop ] ) defConf[ prop ] = config[ prop ]
   }
-  
-  
-  modal = new ModalCons( dom, configs )
-  modal.toggle()
-  
+
+
+  modal = new ModalCons( dom, defConf )
+
   return modal
 }
 
